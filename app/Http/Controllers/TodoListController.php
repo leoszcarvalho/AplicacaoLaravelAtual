@@ -32,6 +32,18 @@ class TodoListController extends Controller
 
      */
 
+     //Função de select com where ===========================================================================================================
+
+     /*$resultados = $clientes->select_where(2);
+
+     foreach ($resultados as $key => $resultado) {
+         var_dump($resultado->id);
+     }
+
+     echo $resultados[0]->nome;
+
+     */
+
      //Função de insert ===========================================================================================================
 
      /*
@@ -44,9 +56,21 @@ class TodoListController extends Controller
      var_dump($insert);
      */
 
+     //Função de update ===========================================================================================================
+
+     /*$data = array(
+       "nome" => "Roberto"
+     );
+
+     $update = $clientes->atualiza(3, $data);
+
+     var_dump($update);
+     */
+
      //Função de delete ===========================================================================================================
 
      //var_dump($clientes->deleta(1));
+
 
      return view('hello');
 
