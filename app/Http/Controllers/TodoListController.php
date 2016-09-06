@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Clientes as Clientes;
+use App\libraries\Teste_custom_class as Teste_custom_class;
 
 class TodoListController extends Controller
 {
@@ -20,6 +21,16 @@ class TodoListController extends Controller
       //echo       $clientes[0]->nome;
 
       $clientes = new Clientes();
+
+      //Utilizando custom class libraries =========================================================================================
+
+      //Basta adicionar com os namespaces certos no início do arquivo
+      //e no arquivo da classe também
+      /*$custom_class = new Teste_custom_class();
+
+      echo $custom_class->soma_valores(5,7);
+      var_dump($custom_class->seleciona_clientes());
+      */
 
       //Função de select ===========================================================================================================
       /*$resultados = $clientes->select_all();
