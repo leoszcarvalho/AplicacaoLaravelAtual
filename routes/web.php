@@ -42,6 +42,7 @@ Route::get('/db', function () {
 //Parametro com ? é opcional
 //Sem ? é obrigatório
 
+/*
 Route::get('/teste/classes', function () {
 
     return view('classes');
@@ -59,6 +60,8 @@ Route::get('/teste/{id?}', function ($id = null) {
 
     return view('hello')->with($data);
 });
-
+*/
 //Registra todos os controllers de uma vez
 Route::resource('todos', 'TodoListController');
+
+Route::post('/todos/store', 'TodoListController@store');

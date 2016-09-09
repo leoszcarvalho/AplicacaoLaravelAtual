@@ -7,18 +7,42 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Clientes as Clientes;
 use App\libraries\Teste_custom_class as Teste_custom_class;
+use Validator;
+use Session;
 
 class TodoListController extends Controller
 {
 
+
+
+    public function __construct()
+    {
+
+    }
+
     public function index(){
 
+      if(Session::has('chave')){
+        echo "A chave existe";
+      }
       //$clientes = Clientes::all();
       //var_dump($clientes);
       //foreach ($clientes as $key => $cliente) {
         //var_dump($cliente->nome);
       //}
       //echo       $clientes[0]->nome;
+
+      //Utilizando sessions =====================================================================================================
+
+
+      //Checar se sessão existe
+      //Session::has('chave')
+
+      //Deletar variável específica de sessão
+      //Session::forget('chave');
+
+      //Deletar todas as variáveis de sessão
+      //Session::flush();
 
       $clientes = new Clientes();
 
@@ -88,10 +112,37 @@ class TodoListController extends Controller
     }
 
     public function create(){
+      echo Session::get('chave');
+
 
     }
 
-    public function store(){
+    public function store(Request $request){
+
+        $messages = [
+          'required' => 'O campo :attribute é obrigatório.',
+          'max' => 'O campo :attribute não pode ser maior que 255 caracteres.',
+          'title.max' => 'O campo :attribute só pode ter no máximo 20 caracteres.',
+
+        ];
+
+        var_dump($request->input("title"));
+
+        $validator = Validator::make($request->all(),
+                      [
+                      'name' => 'required|max:255',
+                      'title' => 'required|max:20',
+                      ],
+                      $messages);
+
+
+
+        if ($validator->fails()) {
+
+            //retorna os erros do formulário
+            var_dump($validator->errors());
+
+        }
 
     }
 
@@ -112,5 +163,7 @@ class TodoListController extends Controller
     public function destroy($id){
 
     }
+
+
 
 }
